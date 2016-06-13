@@ -77,14 +77,14 @@ namespace Hubble.Utility
         /// created：mxk  date：2012-01-16
         /// <param name="conStr">访问的数据库相关字符串比默认库传入空</param>
         /// <returns>全文索引异步链接对象</returns>
-        public static HubbleAsyncConnection getAsyncConnect(string conStr)
+        public static HubbleConnection getAsyncConnect(string conStr)
         {
             string hubConstr = conStr;
             if (conStr == null || conStr == string.Empty)
             {
                 hubConstr = "constr";
             }
-            return new HubbleAsyncConnection(_conStrs[conStr]);
+            return new HubbleConnection(_conStrs[conStr]);
             //return new HubbleAsyncConnection(_conStrs["f" + hubConstr]);
         }
 
@@ -161,10 +161,12 @@ namespace Hubble.Utility
             //获取使用分词的名称
             using (HubbleConnection hubbleCon = getAsyncConnect(conStr))
             {
+                hubbleCon.Open();
                 //打开链接
                 try
                 {
-                    hubbleCon.Open();
+                    if (hubbleCon.State == ConnectionState.Closed)
+                        hubbleCon.Open();
                     HubbleCommand hubbleCommand = new HubbleCommand(hubbleCon);
                     //适配器对象
                     HubbleDataAdapter adapter = new HubbleDataAdapter();
@@ -183,10 +185,8 @@ namespace Hubble.Utility
                 }
                 catch (Exception e)
                 {
-
                     throw;
                 }
-
                 hubbleCon.Close();
             }
             if (set != null && set.Tables.Count == 1)
