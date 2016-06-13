@@ -12,7 +12,7 @@ namespace Hubble.Net.Demo
     {
         static void Main(string[] args)
         {
-            string searchKey = "北京";
+            string searchKey = "张三说的确实在理";
             string mastr = FullDB.GetFiledSearch(SearchEnum.match, "Name1", 1);
             string sql = "select * from HubbleTable where " + mastr + "  @Name1";
             //string sql = "select * from HubbleTable where " + mastr + "  '天安门'";
