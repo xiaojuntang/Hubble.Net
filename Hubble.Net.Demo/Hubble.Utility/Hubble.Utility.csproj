@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E39DAE8-D200-4B84-B7C4-AE9202A92BC5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1729646F-47A8-4097-97A9-1C0ED2846AC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hubble.Net.Demo</RootNamespace>
-    <AssemblyName>Hubble.Net.Demo</AssemblyName>
+    <RootNamespace>Hubble.Utility</RootNamespace>
+    <AssemblyName>Hubble.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,8 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hubble.Analyzer">
+      <HintPath>..\Library\Hubble.Analyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hubble.Core">
+      <HintPath>..\Library\Hubble.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hubble.Framework">
+      <HintPath>..\Library\Hubble.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Hubble.SQLClient">
+      <HintPath>..\Library\Hubble.SQLClient.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu">
+      <HintPath>..\Library\PanGu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,20 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CacheHelper.cs" />
+    <Compile Include="FullDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Doc\readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hubble.Utility\Hubble.Utility.csproj">
-      <Project>{1729646f-47a8-4097-97a9-1c0ed2846ac9}</Project>
-      <Name>Hubble.Utility</Name>
-    </ProjectReference>
+    <Compile Include="WrodAnalyzerServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
